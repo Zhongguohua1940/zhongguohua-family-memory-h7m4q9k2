@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta name="description" content="钟国华家族记忆——记录钟国华家族的故事、味道与相聚时光。" />
+    <title>钟国华家族记忆</title>
+    <style>
+      :root { --ink:#34281f; --muted:#79695d; --paper:#f8f3e9; --red:#9d3524; --gold:#d8aa55; --line:#dfd0bb; --white:#fffdf8; }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; }
+      body { margin:0; color:var(--ink); background:var(--paper); font-family:"Noto Serif SC","Songti SC","STSong",serif; line-height:1.75; }
+      .wrap { width:min(1080px, calc(100% - 40px)); margin:auto; }
+      header { background:var(--white); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:5; }
+      .nav { min-height:68px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+      .brand { font-size:19px; font-weight:700; letter-spacing:.08em; text-decoration:none; color:var(--red); white-space:nowrap; }
+      nav { display:flex; gap:20px; flex-wrap:wrap; justify-content:flex-end; }
+      nav a { color:var(--ink); text-decoration:none; font-size:14px; }
+      nav a:hover { color:var(--red); }
+      .hero { min-height:560px; display:grid; place-items:center; text-align:center; position:relative; overflow:hidden; background:linear-gradient(135deg, rgba(73,39,19,.25), rgba(73,39,19,.05)), url('images/hero.jpg') center/cover, #8a5a3a; color:#fffdf7; }
+      .hero::before, .hero::after { content:""; position:absolute; width:390px; height:390px; border:1px solid rgba(255,255,255,.35); border-radius:50%; }
+      .hero::before { left:-220px; top:-190px; } .hero::after { right:-230px; bottom:-200px; }
+      .hero-inner { position:relative; padding:80px 20px; }
+      .eyebrow { margin:0 0 18px; font-size:14px; letter-spacing:.22em; }
+      h1 { font-size:clamp(40px,7vw,76px); line-height:1.16; margin:0; letter-spacing:.12em; font-weight:500; }
+      .hero p { max-width:520px; margin:26px auto 0; font-size:18px; }
+      .scroll { display:inline-block; margin-top:36px; padding:9px 22px; border:1px solid rgba(255,255,255,.7); border-radius:30px; color:#fff; text-decoration:none; font-size:14px; }
+      main { padding:84px 0 0; }
+      section { margin-bottom:96px; scroll-margin-top:90px; }
+      .section-label { color:var(--red); letter-spacing:.18em; font-size:13px; margin:0 0 10px; }
+      h2 { margin:0 0 18px; font-size:clamp(28px,4vw,40px); line-height:1.3; font-weight:500; }
+      .intro { max-width:700px; font-size:17px; }
+      .story { display:grid; grid-template-columns:1.05fr .95fr; gap:44px; align-items:center; }
+      .photo-placeholder { min-height:340px; background:linear-gradient(145deg, rgba(157,53,36,.83), rgba(103,61,33,.78)), url('images/family.jpg') center/cover, #9a6045; color:#fffaf1; display:grid; place-items:center; text-align:center; padding:40px; border-radius:3px; }
+      .photo-placeholder span { border:1px solid rgba(255,255,255,.65); padding:18px 25px; font-size:15px; }
+      .timeline { border-left:2px solid var(--gold); padding-left:28px; display:grid; gap:28px; }
+      .timeline article { position:relative; } .timeline article::before { content:""; position:absolute; width:10px; height:10px; border-radius:50%; left:-34px; top:10px; background:var(--red); }
+      .timeline h3 { margin:0; font-size:19px; font-weight:500; } .timeline p { margin:5px 0 0; color:var(--muted); }
+      .recipe-grid, .album-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+      .recipe, .album-card { background:var(--white); border:1px solid var(--line); padding:28px 23px; min-height:190px; }
+      .recipe .number { color:var(--gold); font-size:26px; } .recipe h3, .album-card h3 { font-size:20px; margin:13px 0 7px; font-weight:500; }
+      .recipe p, .album-card p { margin:0; color:var(--muted); font-size:14px; }
+      .album-card { min-height:220px; display:flex; flex-direction:column; justify-content:flex-end; background:linear-gradient(145deg, rgba(52,40,31,.1), rgba(52,40,31,.45)), #c9b298; color:#fff; }
+      .album-card:nth-child(2) { background-color:#a86f4e; } .album-card:nth-child(3) { background-color:#6e805d; }
+      .album-card p { color:#fffaf1; }
+      .letter { text-align:center; padding:70px 25px; background:var(--red); color:#fffaf1; }
+      .letter h2 { margin-bottom:12px; } .letter p { max-width:650px; margin:0 auto; font-size:17px; }
+      .document-list { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+      .document { display:flex; justify-content:space-between; gap:16px; align-items:center; background:var(--white); padding:19px 21px; border:1px solid var(--line); }
+      .document span { color:var(--muted); font-size:14px; } .document strong { font-weight:500; }
+      footer { border-top:1px solid var(--line); padding:34px 0 45px; color:var(--muted); font-size:14px; text-align:center; }
+      @media (max-width:720px) { .nav { padding:13px 0; align-items:flex-start; flex-direction:column; } nav { gap:13px; } .hero { min-height:500px; } main { padding-top:64px; } section { margin-bottom:70px; } .story, .recipe-grid, .album-grid, .document-list { grid-template-columns:1fr; } .photo-placeholder { min-height:255px; } }
+    </style>
+  </head>
+  <body>
+    <header><div class="wrap nav"><a class="brand" href="#top">钟国华家族记忆</a><nav aria-label="主导航"><a href="#story">家族故事</a><a href="#recipes">家传味道</a><a href="#album">光影相册</a><a href="#archive">资料室</a></nav></div></header>
+    <div id="top" class="hero"><div class="hero-inner"><p class="eyebrow">家风 · 岁月 · 味道</p><h1>钟国华家族记忆</h1><p>一桌家常菜，一段人生路。把钟国华家族的故事、味道与相聚，留给现在，也留给以后。</p><a class="scroll" href="#story">走进家族记忆</a></div></div>
+    <main class="wrap">
+      <section id="story" class="story"><div><p class="section-label">01 · 家族故事</p><h2>从厨房升起的，是一家人的牵挂</h2><p class="intro">这里将记录钟国华的人生经历、家庭故事和珍贵回忆。待资料整理后，可以按照年代慢慢补充，写成一部让子孙读得懂、记得住的家族自传。</p><div class="timeline"><article><h3>家风的起点</h3><p>待补充：祖辈的故乡、成长经历与做人道理。</p></article><article><h3>奋斗的岁月</h3><p>待补充：求学、工作、家庭与难忘的人生片段。</p></article><article><h3>留给后人的话</h3><p>待补充：家训、祝福和想与儿孙说的话。</p></article></div></div><div class="photo-placeholder"><span>此处将放一张钟国华的全家福<br>（您提供照片后即可更换）</span></div></section>
+      <section id="recipes"><p class="section-label">02 · 家传味道</p><h2>一口熟悉的家乡味</h2><p class="intro">把最值得记住的菜、做法和背后的故事写下来。菜谱不必复杂，重要的是保留那份“家里的味道”。</p><div class="recipe-grid"><article class="recipe"><div class="number">一</div><h3>钟家招牌菜</h3><p>待补充菜名、食材、做法，以及是谁最爱吃。</p></article><article class="recipe"><div class="number">二</div><h3>逢年过节的味道</h3><p>待补充：年夜饭、团圆饭和节日里的厨房记忆。</p></article><article class="recipe"><div class="number">三</div><h3>传给下一代</h3><p>待补充：想让儿孙学会的家常菜与生活道理。</p></article></div></section>
+      <section id="album"><p class="section-label">03 · 光影相册</p><h2>把每一次相聚留下来</h2><div class="album-grid"><article class="album-card"><h3>旧日时光</h3><p>待放童年、青年与老照片</p></article><article class="album-card"><h3>家人相聚</h3><p>待放生日、节日与全家福</p></article><article class="album-card"><h3>山河足迹</h3><p>待放旅行、故乡与日常</p></article></div></section>
+      <section class="letter"><p class="section-label" style="color:#f4d89b">04 · 写给后人</p><h2>愿我们记得来处，也珍惜眼前</h2><p>这段话将由钟家长辈亲自留下。无论相隔多远，打开这里，便能看见一家人共同走过的路。</p></section>
+      <section id="archive"><p class="section-label">05 · 家族资料室</p><h2>可收藏、可传阅的资料</h2><p class="intro">日后可在这里放入自传 PDF、家谱、音频祝福或影像记录；重要原件仍建议另存硬盘和网盘。</p><div class="document-list"><div class="document"><strong>钟国华自传</strong><span>资料准备中</span></div><div class="document"><strong>家族大事记</strong><span>资料准备中</span></div><div class="document"><strong>老照片整理册</strong><span>资料准备中</span></div><div class="document"><strong>音视频留念</strong><span>资料准备中</span></div></div></section>
+    </main>
+    <footer><div class="wrap">钟国华家族记忆 · 为家人保存，为后人传承</div></footer>
+  </body>
+</html>
