@@ -6,7 +6,7 @@
     <meta name="description" content="钟国华家族视频" />
     <title>家族视频 · 钟国华家族记忆</title>
     <style>
-      :root { --ink:#34281f; --muted:#79695d; --paper:#f8f3e9; --red:#9d3524; --gold:#d8aa55; --line:#dfd0bb; --white:#fffdf8; }
+      :root { --ink:#34281f; --muted:#79695d; --paper:#f8f3e9; --red:#9d3524; --gold:#d8aa55; --line:#dfd0bb --white:#fffdf8; }
       * { box-sizing:border-box; }
       html { scroll-behavior:smooth; }
       body { margin:0; color:var(--ink); background:var(--paper); font-family:"Noto Serif SC","Songti SC","STSong",serif; line-height:1.85; }
@@ -27,12 +27,18 @@
       .video-info { margin-top:24px; padding:20px; background:var(--paper); border-left:3px solid var(--gold); border-radius:0 4px 4px 0; }
       .video-title { margin:0 0 10px; font-size:18px; font-weight:500; }
       .video-desc { margin:0; color:var(--muted); font-size:15px; }
-      .download-section { margin-top:30px; text-align:center; }
-      .download-btn { display:inline-block; padding:12px 30px; background:var(--red); color:#fff; text-decoration:none; border-radius:6px; font-size:16px; }
+      .download-section { margin-top:40px; text-align:center; padding:30px; background:#fff8e1; border-radius:12px; border:2px dashed var(--gold); }
+      .download-title { font-size:22px; margin:0 0 10px; color:var(--red); font-weight:600; }
+      .download-desc { font-size:15px; color:var(--muted); margin:0 0 20px; }
+      .download-btn { display:inline-block; padding:18px 50px; background:var(--red); color:#fff; text-decoration:none; border-radius:8px; font-size:20px; font-weight:600; box-shadow:0 4px 12px rgba(157,53,36,.3); }
       .download-btn:hover { opacity:.9; }
-      .tip { margin-top:20px; padding:16px 20px; background:#fff3e0; border-radius:6px; font-size:14px; color:#795548; line-height:1.8; }
+      .download-size { margin-top:12px; font-size:14px; color:var(--muted); }
+      .steps { margin-top:30px; padding:20px; background:var(--white); border-radius:8px; border:1px solid var(--line); }
+      .steps h3 { margin:0 0 15px; font-size:18px; color:var(--ink); }
+      .steps ol { margin:0; padding-left:25px; font-size:15px; line-height:2; }
+      .tip { margin-top:20px; padding:16px 20px; background:#e8f5e9; border-radius:6px; font-size:14px; color:#2e7d32; line-height:1.8; }
       footer { border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted); font-size:14px; text-align:center; }
-      @media (max-width:600px) { .nav { padding:12px 0; align-items:flex-start; flex-direction:column; } nav { gap:12px; } .hero { padding:40px 0 30px; } }
+      @media (max-width:600px) { .nav { padding:12px 0; align-items:flex-start; flex-direction:column; } nav { gap:12px; } .hero { padding:40px 0 30px; } .download-btn { padding:15px 30px; font-size:18px; } }
     </style>
   </head>
   <body>
@@ -49,17 +55,29 @@
       </div>
       <div class="video-info">
         <p class="video-title">家族珍贵视频</p>
-        <p class="video-desc">这是一段珍贵的家族视频记录，保存了美好的时光记忆。点击播放按钮即可观看，视频有声音。</p>
+        <p class="video-desc">这是一段珍贵的家族视频记录，保存了美好的时光记忆。视频时长约1分16秒，有声音。</p>
       </div>
+      
       <div class="download-section">
-        <a href="videos/family-video.mp4" download="家族视频.mp4" class="download-btn">📥 下载视频到本地观看</a>
+        <p class="download-title">📥 推荐：下载到电脑上观看</p>
+        <p class="download-desc">在线播放可能会卡，下载到电脑上看最流畅，有画面有声音</p>
+        <a href="videos/family-video.mp4" download="钟国华家族视频.mp4" class="download-btn">点击下载视频</a>
+        <p class="download-size">视频大小：31MB · 高清版本</p>
       </div>
+      
+      <div class="steps">
+        <h3>下载后怎么看？</h3>
+        <ol>
+          <li>点上面的红色"点击下载视频"按钮</li>
+          <li>等几秒钟，视频就下载到电脑上了</li>
+          <li>找到下载好的文件（一般在"下载"文件夹里）</li>
+          <li>双击那个文件，就能用电脑自带的播放器看了</li>
+          <li>有画面有声音，一点都不卡！</li>
+        </ol>
+      </div>
+      
       <div class="tip">
-        💡 <strong>观看说明：</strong><br>
-        1. 点击视频上的播放按钮就能看，有声音<br>
-        2. 如果播放不流畅，等它加载一会儿再播<br>
-        3. 如果实在播不了，点上面的"下载视频"按钮，下载到电脑上用播放器看，肯定能看<br>
-        4. 苹果手机/电脑用Safari浏览器效果最好
+        ✅ <strong>小提示：</strong>下载下来的视频可以永久保存，想什么时候看就什么时候看，还可以发给亲戚朋友看。
       </div>
     </main>
     <footer><div class="wrap">钟国华家族记忆 · 为家人保存，为后人传承</div></footer>
