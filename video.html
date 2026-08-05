@@ -23,11 +23,14 @@
       .subtitle { color:var(--muted); font-size:16px; margin:0; }
       main { padding:50px 0 80px; }
       .video-container { background:var(--white); border:1px solid var(--line); border-radius:8px; padding:20px; box-shadow:0 4px 20px rgba(0,0,0,.08); }
-      video { width:100%; border-radius:4px; display:block; }
+      video { width:100%; border-radius:4px; display:block; background:#000; }
       .video-info { margin-top:24px; padding:20px; background:var(--paper); border-left:3px solid var(--gold); border-radius:0 4px 4px 0; }
       .video-title { margin:0 0 10px; font-size:18px; font-weight:500; }
       .video-desc { margin:0; color:var(--muted); font-size:15px; }
-      .tip { margin-top:30px; padding:16px 20px; background:#fff3e0; border-radius:6px; font-size:14px; color:#795548; }
+      .download-section { margin-top:30px; text-align:center; }
+      .download-btn { display:inline-block; padding:12px 30px; background:var(--red); color:#fff; text-decoration:none; border-radius:6px; font-size:16px; }
+      .download-btn:hover { opacity:.9; }
+      .tip { margin-top:20px; padding:16px 20px; background:#fff3e0; border-radius:6px; font-size:14px; color:#795548; line-height:1.8; }
       footer { border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted); font-size:14px; text-align:center; }
       @media (max-width:600px) { .nav { padding:12px 0; align-items:flex-start; flex-direction:column; } nav { gap:12px; } .hero { padding:40px 0 30px; } }
     </style>
@@ -37,18 +40,25 @@
     <div class="hero"><div class="wrap"><p class="eyebrow">家族视频</p><h1>岁月有声</h1><p class="subtitle">珍贵的视频记录，留住声音与画面</p></div></div>
     <main class="wrap">
       <div class="video-container">
-        <video controls playsinline preload="metadata">
+        <video controls playsinline preload="auto" poster="videos/video-poster.jpg">
+          <source src="videos/family-video-small.mp4" type="video/mp4">
           <source src="videos/family-video.mp4" type="video/mp4">
-          <source src="videos/family-video.mov" type="video/quicktime">
-          您的浏览器不支持视频播放，请下载后观看。
+          您的浏览器不支持视频播放，请点击下方按钮下载后观看。
         </video>
       </div>
       <div class="video-info">
         <p class="video-title">家族珍贵视频</p>
         <p class="video-desc">这是一段珍贵的家族视频记录，保存了美好的时光记忆。点击播放按钮即可观看，视频有声音。</p>
       </div>
+      <div class="download-section">
+        <a href="videos/family-video.mp4" download="家族视频.mp4" class="download-btn">📥 下载视频到本地观看</a>
+      </div>
       <div class="tip">
-        💡 小提示：如果视频播放不流畅或者没有声音，可以试试用不同的浏览器打开（比如Safari、Chrome、Edge）。苹果手机和电脑上用Safari浏览器播放效果最好。
+        💡 <strong>观看说明：</strong><br>
+        1. 点击视频上的播放按钮就能看，有声音<br>
+        2. 如果播放不流畅，等它加载一会儿再播<br>
+        3. 如果实在播不了，点上面的"下载视频"按钮，下载到电脑上用播放器看，肯定能看<br>
+        4. 苹果手机/电脑用Safari浏览器效果最好
       </div>
     </main>
     <footer><div class="wrap">钟国华家族记忆 · 为家人保存，为后人传承</div></footer>
