@@ -1,183 +1,101 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="钟国华家族照片相册" />
-    <title>光影相册 · 钟国华家族记忆</title>
-    <style>
-      :root { --ink:#34281f; --muted:#79695d; --paper:#f8f3e9; --red:#9d3524; --gold:#d8aa55; --line:#dfd0bb; --white:#fffdf8; }
-      * { box-sizing:border-box; }
-      html { scroll-behavior:smooth; }
-      body { margin:0; color:var(--ink); background:var(--paper); font-family:"Noto Serif SC","Songti SC","STSong",serif; line-height:1.85; }
-      .wrap { width:min(1100px, calc(100% - 40px)); margin:auto; }
-      header { background:var(--white); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:5; }
-      .nav { min-height:60px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
-      .brand { font-size:17px; font-weight:700; letter-spacing:.08em; text-decoration:none; color:var(--red); white-space:nowrap; }
-      nav { display:flex; gap:18px; flex-wrap:wrap; justify-content:flex-end; }
-      nav a { color:var(--ink); text-decoration:none; font-size:14px; }
-      nav a:hover { color:var(--red); }
-      .hero { padding:80px 0 60px; text-align:center; border-bottom:1px solid var(--line); }
-      .eyebrow { margin:0 0 12px; font-size:13px; letter-spacing:.22em; color:var(--red); }
-      h1 { font-size:clamp(32px,5vw,48px); line-height:1.2; margin:0 0 16px; letter-spacing:.08em; font-weight:500; }
-      .subtitle { color:var(--muted); font-size:16px; margin:0; }
-      main { padding:60px 0 80px; }
-      .gallery { display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; }
-      .photo-card { background:var(--white); border:1px solid var(--line); border-radius:8px; overflow:hidden; transition:transform .3s, box-shadow .3s; }
-      .photo-card:hover { transform:translateY(-4px); box-shadow:0 8px 24px rgba(0,0,0,.1); }
-      .photo-img { width:100%; height:250px; object-fit:cover; display:block; }
-      .photo-info { padding:16px 20px; }
-      .photo-number { color:var(--gold); font-size:13px; margin:0 0 4px; font-weight:600; }
-      .photo-title { margin:0 0 6px; font-size:16px; font-weight:500; }
-      .photo-desc { margin:0; font-size:14px; color:var(--muted); }
-      footer { border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted); font-size:14px; text-align:center; }
-      @media (max-width:900px) { .gallery { grid-template-columns:repeat(2, 1fr); } }
-      @media (max-width:600px) { .gallery { grid-template-columns:1fr; } .nav { padding:12px 0; align-items:flex-start; flex-direction:column; } nav { gap:12px; } .hero { padding:50px 0 40px; } }
-    </style>
-  </head>
-  <body>
-    <header><div class="wrap nav"><a class="brand" href="index.html">钟国华家族记忆</a><nav><a href="index.html">返回首页</a><a href="story.html">自传故事</a><a href="video.html">家族视频</a></nav></div></header>
-    <div class="hero"><div class="wrap"><p class="eyebrow">光影相册</p><h1>岁月留影</h1><p class="subtitle">一张张照片，记录着家族的时光与故事</p></div></div>
-    <main class="wrap">
-      <div class="gallery">
-        <div class="photo-card">
-          <img class="photo-img" src="images/photo-1.jpg" alt="第1张照片" />
-          <div class="photo-info">
-            <p class="photo-number">第 1 张</p>
-            <p class="photo-title">待添加标题</p>
-            <p class="photo-desc">待添加说明</p>
-          </div>
-        </div>
-        <div class="photo-card">
-          <img class="photo-img" src="images/photo-2.jpg" alt="第2张照片" />
-          <div class="photo-info">
-            <p class="photo-number">第 2 张</p>
-            <p class="photo-title">待添加标题</p>
-            <p class="photo-desc">待添加说明</p>
-          </div>
-        </div>
-        <div class="photo-card">
-          <img class="photo-img" src="images/photo-3.jpg" alt="第3张照片" />
-          <div class="photo-info">
-            <p class="photo-number">第 3 张</p>
-            <p class="photo-title">待添加标题</p>
-            <p class="photo-desc">待添加说明</p>
-          </div>
-        </div>
-        <div class="photo-card">
-          <img class="photo-img" src="images/photo-4.jpg" alt="第4张照片" />
-          <div class="photo-info">
-            <p class="photo-number">第 4 张</p>
-            <p class="photo-title">待添加标题</p>
-            <p class="photo-desc">待添加说明</p>
-          </div>
-        </div>
-        <div class="photo-card">
-          <img class="photo-img" src="images/photo-5.jpg" alt="第5张照片" />
-          <div class="photo-info">
-            <p class="photo-number">第 5 张</p>
-            <p class="photo-title">待添加标题</p>
-            <p class="photo-desc">待添加说明</p>
-          </div>
-        </div>
-        <div class="photo-card">
-          <img class="photo-img" src="images/photo-6.jpg" alt="第6张照片" />
-          <div class="photo-info">
-            <p class="photo-number">第 6 张</p>
-            <p class="photo-title">待添加标题</p>
-            <p class="photo-desc">待添加说明</p>
-          </div>
-        </div>
-        <div class="photo-card">
-          <img class="photo-img" src="images/photo-7.jpg" alt="第7张照片" />
-          <div class="photo-info">
-            <p class="photo-number">第 7 张</p>
-            <p class="photo-title">待添加标题</p>
-            <p class="photo-desc">待添加说明</p>
-          </div>
-        </div>
-        <div class="photo-card">
-          <img class="photo-img" src="images/photo-8.jpg" alt="第8张照片" />
-          <div class="photo-info">
-            <p class="photo-number">第 8 张</p>
-            <p class="photo-title">待添加标题</p>
-            <p class="photo-desc">待添加说明</p>
-          </div>
-        </div>
-        <div class="photo-card">
-          <img class="photo-img" src="images/photo-9.jpg" alt="第9张照片" />
-          <div class="photo-info">
-            <p class="photo-number">第 9 张</p>
-            <p class="photo-title">待添加标题</p>
-            <p class="photo-desc">待添加说明</p>
-          </div>
-        </div>
-        <div class="photo-card">
-          <img class="photo-img" src="images/photo-10.jpg" alt="第10张照片" />
-          <div class="photo-info">
-            <p class="photo-number">第 10 张</p>
-            <p class="photo-title">待添加标题</p>
-            <p class="photo-desc">待添加说明</p>
-          </div>
-        </div>
-        <div class="photo-card">
-          <img class="photo-img" src="images/photo-11.jpg" alt="第11张照片" />
-          <div class="photo-info">
-            <p class="photo-number">第 11 张</p>
-            <p class="photo-title">待添加标题</p>
-            <p class="photo-desc">待添加说明</p>
-          </div>
-        </div>
-        <div class="photo-card">
-          <img class="photo-img" src="images/photo-12.jpg" alt="第12张照片" />
-          <div class="photo-info">
-            <p class="photo-number">第 12 张</p>
-            <p class="photo-title">待添加标题</p>
-            <p class="photo-desc">待添加说明</p>
-          </div>
-        </div>
-        <div class="photo-card">
-          <img class="photo-img" src="images/photo-13.jpg" alt="第13张照片" />
-          <div class="photo-info">
-            <p class="photo-number">第 13 张</p>
-            <p class="photo-title">待添加标题</p>
-            <p class="photo-desc">待添加说明</p>
-          </div>
-        </div>
-        <div class="photo-card">
-          <img class="photo-img" src="images/photo-14.jpg" alt="第14张照片" />
-          <div class="photo-info">
-            <p class="photo-number">第 14 张</p>
-            <p class="photo-title">待添加标题</p>
-            <p class="photo-desc">待添加说明</p>
-          </div>
-        </div>
-        <div class="photo-card">
-          <img class="photo-img" src="images/photo-15.jpg" alt="第15张照片" />
-          <div class="photo-info">
-            <p class="photo-number">第 15 张</p>
-            <p class="photo-title">待添加标题</p>
-            <p class="photo-desc">待添加说明</p>
-          </div>
-        </div>
-        <div class="photo-card">
-          <img class="photo-img" src="images/photo-16.jpg" alt="第16张照片" />
-          <div class="photo-info">
-            <p class="photo-number">第 16 张</p>
-            <p class="photo-title">待添加标题</p>
-            <p class="photo-desc">待添加说明</p>
-          </div>
-        </div>
-        <div class="photo-card">
-          <img class="photo-img" src="images/photo-17.jpg" alt="第17张照片" />
-          <div class="photo-info">
-            <p class="photo-number">第 17 张</p>
-            <p class="photo-title">待添加标题</p>
-            <p class="photo-desc">待添加说明</p>
-          </div>
-        </div>
-      </div>
-    </main>
-    <footer><div class="wrap">钟国华家族记忆 · 为家人保存，为后人传承</div></footer>
-  </body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>家族照片集</title>
+<style>
+.photo-item{margin:24px 0;text-align:center;}
+.photo-item img{max-width:100%;}
+.caption{margin-top:8px;font-size:16px;color:#222;}
+</style>
+</head>
+<body>
+
+<div class="photo-item">
+  <img src="照片/pic1.jpg">
+  <div class="caption">左哥8岁右我4岁，在宜宾</div>
+</div>
+
+<div class="photo-item">
+  <img src="照片/pic2.jpg">
+  <div class="caption">钟慧在厦门</div>
+</div>
+
+<div class="photo-item">
+  <img src="照片/pic3.jpg">
+  <div class="caption">钟国华在海陵岛红树林老鼠山</div>
+</div>
+
+<div class="photo-item">
+  <img src="照片/pic4.jpg">
+  <div class="caption">青年时期：钟国华</div>
+</div>
+
+<div class="photo-item">
+  <img src="照片/pic5.jpg">
+  <div class="caption">2025年春节</div>
+</div>
+
+<div class="photo-item">
+  <img src="照片/pic6.jpg">
+  <div class="caption"></div>
+</div>
+
+<div class="photo-item">
+  <img src="照片/pic7.jpg">
+  <div class="caption">1946年在昆明</div>
+</div>
+
+<div class="photo-item">
+  <img src="照片/pic8.jpg">
+  <div class="caption">2026/7在峨眉山后山</div>
+</div>
+
+<div class="photo-item">
+  <img src="照片/pic9.jpg">
+  <div class="caption">年轻时候的邱味琴</div>
+</div>
+
+<div class="photo-item">
+  <img src="照片/pic10.jpg">
+  <div class="caption">1946年在昆明</div>
+</div>
+
+<div class="photo-item">
+  <img src="照片/pic11.jpg">
+  <div class="caption">老年钟泽普</div>
+</div>
+
+<div class="photo-item">
+  <img src="照片/pic12.jpg">
+  <div class="caption">2003年在碧涛园</div>
+</div>
+
+<div class="photo-item">
+  <img src="照片/pic13.jpg">
+  <div class="caption">钟国华在日本</div>
+</div>
+
+<div class="photo-item">
+  <img src="照片/pic14.jpg">
+  <div class="caption">年轻时代的钟雪萍</div>
+</div>
+
+<div class="photo-item">
+  <img src="照片/pic15.jpg">
+  <div class="caption">在泰国：钟一鸣，钟慧，杨梅</div>
+</div>
+
+<div class="photo-item">
+  <img src="照片/pic16.jpg">
+  <div class="caption">AI制作</div>
+</div>
+
+<div class="photo-item">
+  <img src="照片/pic17.jpg">
+  <div class="caption">钟国华和唐伦在游轮上</div>
+</div>
+
+</body>
 </html>
