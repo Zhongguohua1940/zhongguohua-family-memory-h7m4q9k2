@@ -3,101 +3,70 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>家族照片集</title>
+<title>家族相册</title>
 <style>
-.back{display:inline-block;margin:16px 8px;padding:6px 14px;background:#2367bb;color:#fff;text-decoration:none;border-radius:4px;}
-.photo-item{margin:24px 0;text-align:center;}
-.photo-item img{max-width:100%;}
-.caption{margin-top:8px;font-size:16px;color:#222;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#f7f7f7;font-family:"PingFang SC",sans-serif;padding:20px;}
+h1{text-align:center;margin-bottom:30px;color:#333;}
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto‑fill,minmax(220px,1fr));
+  gap:16px;
+  max-width:1200px;
+  margin:0 auto;
+}
+.gallery-item{
+  background:#fff;
+  padding:10px;
+  border-radius:8px;
+  box-shadow:0 2px 8px #00000015;
+}
+.gallery-item img{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:4px;
+}
+.back{
+  display:block;
+  text-align:center;
+  margin:30px 0;
+  font-size:18px;
+}
+.back a{color:#2563eb;text-decoration:none;}
 </style>
 </head>
 <body>
-<a class="back" href="index.html">← 返回首页</a>
-
-<div class="photo-item">
-  <img src="images/pic1.jpg">
-  <div class="caption">左哥8岁右我4岁，在宜宾</div>
+<h1>家族相册</h1>
+<div class="gallery">
+<div class="gallery-item"><img src="pic-1.jpg"></div>
+<div class="gallery-item"><img src="pic-2.jpg"></div>
+<div class="gallery-item"><img src="pic-3.jpg"></div>
+<div class="gallery-item"><img src="pic-4.jpg"></div>
+<div class="gallery-item"><img src="pic-5.jpg"></div>
+<div class="gallery-item"><img src="pic-6.jpg"></div>
+<div class="gallery-item"><img src="pic-7.jpg"></div>
+<div class="gallery-item"><img src="pic-8.jpg"></div>
+<div class="gallery-item"><img src="pic-9.jpg"></div>
+<div class="gallery-item"><img src="pic-10.jpg"></div>
+<div class="gallery-item"><img src="pic-11.jpg"></div>
+<div class="gallery-item"><img src="pic-12.jpg"></div>
+<div class="gallery-item"><img src="pic-13.jpg"></div>
+<div class="gallery-item"><img src="pic-14.jpg"></div>
+<div class="gallery-item"><img src="pic-15.jpg"></div>
+<div class="gallery-item"><img src="pic-16.jpg"></div>
+<div class="gallery-item"><img src="pic-17.jpg"></div>
+<div class="gallery-item"><img src="pic-18.jpg"></div>
+<div class="gallery-item"><img src="pic-19.jpg"></div>
+<div class="gallery-item"><img src="pic-20.jpg"></div>
+<div class="gallery-item"><img src="pic-21.jpg"></div>
+<div class="gallery-item"><img src="pic-22.jpg"></div>
+<div class="gallery-item"><img src="pic-23.jpg"></div>
+<div class="gallery-item"><img src="pic-24.jpg"></div>
+<div class="gallery-item"><img src="pic-25.jpg"></div>
 </div>
-
-<div class="photo-item">
-  <img src="images/pic2.jpg">
-  <div class="caption">钟慧在厦门</div>
+<div class="back">
+<a href="./index.html">← 返回首页</a>
 </div>
-
-<div class="photo-item">
-  <img src="images/pic3.jpg">
-  <div class="caption">钟国华在海陵岛红树林老鼠山</div>
-</div>
-
-<div class="photo-item">
-  <img src="images/pic4.jpg">
-  <div class="caption">青年时期：钟国华</div>
-</div>
-
-<div class="photo-item">
-  <img src="images/pic5.jpg">
-  <div class="caption">2025年春节</div>
-</div>
-
-<div class="photo-item">
-  <img src="images/pic6.jpg">
-  <div class="caption"></div>
-</div>
-
-<div class="photo-item">
-  <img src="images/pic7.jpg">
-  <div class="caption">1946年在昆明</div>
-</div>
-
-<div class="photo-item">
-  <img src="images/pic8.jpg">
-  <div class="caption">2026/7在峨眉山后山</div>
-</div>
-
-<div class="photo-item">
-  <img src="images/pic9.jpg">
-  <div class="caption">年轻时候的邱味琴</div>
-</div>
-
-<div class="photo-item">
-  <img src="images/pic10.jpg">
-  <div class="caption">1946年在昆明</div>
-</div>
-
-<div class="photo-item">
-  <img src="images/pic11.jpg">
-  <div class="caption">老年钟泽普</div>
-</div>
-
-<div class="photo-item">
-  <img src="images/pic12.jpg">
-  <div class="caption">2003年在碧涛园</div>
-</div>
-
-<div class="photo-item">
-  <img src="images/pic13.jpg">
-  <div class="caption">钟国华在日本</div>
-</div>
-
-<div class="photo-item">
-  <img src="images/pic14.jpg">
-  <div class="caption">年轻时代的钟雪萍</div>
-</div>
-
-<div class="photo-item">
-  <img src="images/pic15.jpg">
-  <div class="caption">在泰国：钟一鸣，钟慧，杨梅</div>
-</div>
-
-<div class="photo-item">
-  <img src="images/pic16.jpg">
-  <div class="caption">AI制作</div>
-</div>
-
-<div class="photo-item">
-  <img src="images/pic17.jpg">
-  <div class="caption">钟国华和唐伦在游轮上</div>
-</div>
-
 </body>
 </html>
