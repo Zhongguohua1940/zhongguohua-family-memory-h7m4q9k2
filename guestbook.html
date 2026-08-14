@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>观后留言 · 钟国华的家族网站</title>
+<style>
+:root{--ink:#34281f;--muted:#79695d;--paper:#f7f1e6;--navy:#17324d;--line:#dfd0bb;--white:#fffdf8;--red:#963a2b}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Songti SC","Noto Serif CJK SC","STSong",serif;line-height:1.8;padding:18px}.container{max-width:760px;margin:0 auto;background:var(--white);padding:clamp(24px,5vw,52px);border-radius:10px;box-shadow:0 5px 24px rgba(0,0,0,.08)}.back{color:var(--red);text-decoration:none;font-size:15px}h1{text-align:center;color:var(--navy);font-size:clamp(30px,5vw,42px);margin:18px 0 8px}.lead{text-align:center;color:var(--muted);margin-bottom:30px}.field{margin-bottom:20px}label{display:block;color:var(--navy);font-weight:600;margin-bottom:7px}input,textarea{width:100%;border:1px solid var(--line);border-radius:7px;padding:11px 13px;font:inherit;font-size:17px;background:#fffdfa}textarea{min-height:180px;resize:vertical}.hint{font-size:13px;color:var(--muted);margin-top:4px}.error{color:var(--red);font-size:14px;min-height:22px}.btns{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:26px}.btn{display:inline-block;min-width:140px;padding:10px 20px;border:1px solid var(--navy);border-radius:7px;background:#f8f5ee;color:var(--navy);text-decoration:none;text-align:center;font-size:16px;cursor:pointer}.btn.primary{background:var(--navy);color:#fff}.status{text-align:center;margin-top:18px;color:var(--navy);min-height:28px}
+</style>
+</head>
+<body>
+<main class="container">
+<a class="back" href="story.html">← 返回自传</a>
+<h1>观后留言</h1>
+<div class="lead">欢迎留下您读完钟国华自传后的感想</div>
+<form id="guestbook" novalidate>
+<div class="field"><label for="name">姓名</label><input id="name" name="name" autocomplete="name" placeholder="请输入2～4个汉字" required><div class="hint">姓名必须是2～4个汉字。</div><div class="error" id="nameError"></div></div>
+<div class="field"><label for="phone">联系电话</label><input id="phone" name="phone" inputmode="numeric" autocomplete="tel" placeholder="请输入11位电话号码" maxlength="11" required><div class="hint">联系电话必须正好11位数字。</div><div class="error" id="phoneError"></div></div>
+<div class="field"><label for="message">留言内容</label><textarea id="message" name="message" placeholder="请写下您的留言……" required></textarea><div class="error" id="messageError"></div></div>
+<div class="btns"><button class="btn primary" type="submit">提交留言</button><a class="btn" href="story.html">返回自传</a><a class="btn" href="index.html">返回主页</a></div>
+<div class="status" id="status"></div>
+</form>
+</main>
+<script>
+const form=document.getElementById('guestbook');
+const nameInput=document.getElementById('name');
+const phoneInput=document.getElementById('phone');
+const messageInput=document.getElementById('message');
+phoneInput.addEventListener('input',()=>{phoneInput.value=phoneInput.value.replace(/\D/g,'').slice(0,11)});
+function clearErrors(){document.querySelectorAll('.error').forEach(e=>e.textContent='');document.getElementById('status').textContent=''}
+form.addEventListener('submit',e=>{
+ e.preventDefault();clearErrors();let ok=true;
+ const name=nameInput.value.trim(),phone=phoneInput.value.trim(),message=messageInput.value.trim();
+ if(!/^[\u4e00-\u9fff]{2,4}$/.test(name)){document.getElementById('nameError').textContent='输入错误：姓名必须填写2～4个汉字。';ok=false}
+ if(!/^\d{11}$/.test(phone)){document.getElementById('phoneError').textContent='输入错误：联系电话必须正好11位，请重新填写。';ok=false}
+ if(!message){document.getElementById('messageError').textContent='请输入留言内容。';ok=false}
+ if(!ok)return;
+ document.getElementById('status').textContent='填写正确。留言提交功能已经准备好。';
+});
+</script>
+</body>
+</html>
