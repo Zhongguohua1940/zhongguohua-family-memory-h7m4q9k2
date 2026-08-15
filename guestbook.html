@@ -6,7 +6,7 @@
 <title>观后留言 · 钟国华的家族网站</title>
 <style>
 :root{--ink:#34281f;--muted:#79695d;--paper:#f7f1e6;--navy:#17324d;--line:#dfd0bb;--white:#fffdf8;--red:#963a2b}
-*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Songti SC","Noto Serif CJK SC","STSong",serif;line-height:1.8;padding:18px}.container{max-width:760px;margin:0 auto;background:var(--white);padding:clamp(24px,5vw,52px);border-radius:10px;box-shadow:0 5px 24px rgba(0,0,0,.08)}.back{color:var(--red);text-decoration:none;font-size:15px}h1{text-align:center;color:var(--navy);font-size:clamp(30px,5vw,42px);margin:18px 0 8px}.lead{text-align:center;color:var(--muted);margin-bottom:30px}.field{margin-bottom:20px}label{display:block;color:var(--navy);font-weight:600;margin-bottom:7px}input,textarea{width:100%;border:1px solid var(--line);border-radius:7px;padding:11px 13px;font:inherit;font-size:17px;background:#fffdfa}textarea{min-height:180px;resize:vertical}.hint{font-size:13px;color:var(--muted);margin-top:4px}.error{color:var(--red);font-size:14px;min-height:22px;visibility:hidden}.error.show{visibility:visible}.btns{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:26px}.btn{display:inline-block;min-width:140px;padding:10px 20px;border:1px solid var(--navy);border-radius:7px;background:#f8f5ee;color:var(--navy);text-decoration:none;text-align:center;font-size:16px;cursor:pointer}.btn.primary{background:var(--navy);color:#fff}.status{text-align:center;margin-top:18px;color:var(--navy);min-height:28px}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Songti SC","Noto Serif CJK SC","STSong",serif;line-height:1.8;padding:18px}.container{max-width:760px;margin:0 auto;background:var(--white);padding:clamp(24px,5vw,52px);border-radius:10px;box-shadow:0 5px 24px rgba(0,0,0,.08)}.back{color:var(--red);text-decoration:none;font-size:15px}h1{text-align:center;color:var(--navy);font-size:clamp(30px,5vw,42px);margin:18px 0 8px}.lead{text-align:center;color:var(--muted);margin-bottom:30px}.field{margin-bottom:20px}label{display:block;color:var(--navy);font-weight:600;margin-bottom:7px}input,textarea{width:100%;border:1px solid var(--line);border-radius:7px;padding:11px 13px;font:inherit;font-size:17px;background:#fffdfa}textarea{min-height:180px;resize:vertical}.hint{font-size:13px;color:var(--muted);margin-top:4px}.count{text-align:right;font-size:13px;color:var(--muted);margin-top:2px}.error{color:var(--red);font-size:14px;min-height:22px;visibility:hidden}.error.show{visibility:visible}.btns{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:26px}.btn{display:inline-block;min-width:140px;padding:10px 20px;border:1px solid var(--navy);border-radius:7px;background:#f8f5ee;color:var(--navy);text-decoration:none;text-align:center;font-size:16px;cursor:pointer}.btn.primary{background:var(--navy);color:#fff}.btn:disabled{opacity:.55;cursor:not-allowed}.status{text-align:center;margin-top:18px;color:var(--navy);min-height:28px}
 </style>
 </head>
 <body>
@@ -17,11 +17,12 @@
 <form id="guestbook" novalidate>
 <div class="field"><label for="name">姓名</label><input id="name" name="name" autocomplete="name" placeholder="请输入2～4个汉字" required><div class="hint">姓名必须是2～4个汉字。</div><div class="error" id="nameError">输入错误：姓名必须填写2～4个汉字。</div></div>
 <div class="field"><label for="phone">联系电话</label><input id="phone" name="phone" inputmode="numeric" autocomplete="tel" placeholder="请输入11位电话号码" maxlength="11" required><div class="hint">联系电话必须正好11位数字。</div><div class="error" id="phoneError">输入错误：联系电话必须正好11位，请重新填写。</div></div>
-<div class="field"><label for="message">留言内容</label><textarea id="message" name="message" placeholder="请先正确填写姓名和联系电话后，再输入留言……" required disabled></textarea><div class="error" id="messageError">请输入留言内容。</div></div>
-<div class="btns"><button class="btn primary" type="submit">提交留言</button><a class="btn" href="story.html">返回自传</a><a class="btn" href="index.html">返回主页</a></div>
+<div class="field"><label for="message">留言内容</label><textarea id="message" name="message" placeholder="请先正确填写姓名和联系电话后，再输入留言……" maxlength="100" required disabled></textarea><div class="count"><span id="messageCount">0</span>/100字</div><div class="hint">留言内容最多100个字。</div><div class="error" id="messageError">请输入留言内容。</div></div>
+<div class="btns"><button class="btn primary" id="submitBtn" type="submit">提交留言</button><a class="btn" href="story.html">返回自传</a><a class="btn" href="index.html">返回主页</a></div>
 <div class="status" id="status"></div>
 </form>
 </main>
+<script src="guestbook-config.js"></script>
 <script>
 const form=document.getElementById('guestbook');
 const nameInput=document.getElementById('name');
@@ -31,63 +32,63 @@ const nameError=document.getElementById('nameError');
 const phoneError=document.getElementById('phoneError');
 const messageError=document.getElementById('messageError');
 const status=document.getElementById('status');
+const submitBtn=document.getElementById('submitBtn');
+const messageCount=document.getElementById('messageCount');
 
 function validName(){return /^[\u4e00-\u9fff]{2,4}$/.test(nameInput.value.trim());}
 function validPhone(){return /^\d{11}$/.test(phoneInput.value.trim());}
+function validMessage(){return messageInput.value.trim() !== '' && Array.from(messageInput.value).length <= 100;}
 function clearError(el){el.classList.remove('show');}
 function showError(el){el.classList.add('show');}
+function updateCount(){messageCount.textContent=Array.from(messageInput.value).length;}
 function updateAccess(){
   const nameOK=validName(), phoneOK=validPhone();
   messageInput.disabled=!(nameOK && phoneOK);
   if(nameOK) clearError(nameError);
   if(phoneOK) clearError(phoneError);
-  if(nameOK && phoneOK){
-    messageInput.placeholder='请输入留言内容。';
-  } else {
-    messageInput.placeholder='请先正确填写姓名和联系电话后，再输入留言……';
-  }
+  messageInput.placeholder=(nameOK && phoneOK)?'请输入留言内容。':'请先正确填写姓名和联系电话后，再输入留言……';
 }
 
-nameInput.addEventListener('input',()=>{
-  clearError(nameError);
-  status.textContent='';
-  updateAccess();
-});
-nameInput.addEventListener('blur',()=>{
-  if(nameInput.value.trim() && !validName()) showError(nameError);
-  updateAccess();
-});
+nameInput.addEventListener('input',()=>{clearError(nameError);status.textContent='';updateAccess();});
+nameInput.addEventListener('blur',()=>{if(nameInput.value.trim()&&!validName())showError(nameError);updateAccess();});
+phoneInput.addEventListener('input',()=>{phoneInput.value=phoneInput.value.replace(/\D/g,'').slice(0,11);clearError(phoneError);status.textContent='';updateAccess();});
+phoneInput.addEventListener('blur',()=>{if(phoneInput.value.trim()&&!validPhone())showError(phoneError);updateAccess();});
+messageInput.addEventListener('input',()=>{clearError(messageError);status.textContent='';updateCount();});
 
-phoneInput.addEventListener('input',()=>{
-  phoneInput.value=phoneInput.value.replace(/\D/g,'').slice(0,11);
-  clearError(phoneError);
-  status.textContent='';
-  updateAccess();
-});
-phoneInput.addEventListener('blur',()=>{
-  if(phoneInput.value.trim() && !validPhone()) showError(phoneError);
-  updateAccess();
-});
-
-messageInput.addEventListener('input',()=>{
-  clearError(messageError);
-  status.textContent='';
-});
-
-form.addEventListener('submit',e=>{
+form.addEventListener('submit',async e=>{
   e.preventDefault();
-  clearError(nameError); clearError(phoneError); clearError(messageError); status.textContent='';
-  const nameOK=validName(), phoneOK=validPhone(), messageOK=messageInput.value.trim() !== '';
+  clearError(nameError);clearError(phoneError);clearError(messageError);status.textContent='';
+  const nameOK=validName(),phoneOK=validPhone(),messageOK=validMessage();
   let ok=true;
   if(!nameOK){showError(nameError);ok=false;}
   if(!phoneOK){showError(phoneError);ok=false;}
-  if(!nameOK || !phoneOK){messageInput.disabled=true;}
-  if(!messageOK && nameOK && phoneOK){showError(messageError);ok=false;}
+  if(nameOK&&phoneOK&&!messageOK){showError(messageError);ok=false;}
   updateAccess();
   if(!ok)return;
-  status.textContent='填写正确。留言可以提交。';
+
+  if(typeof GUESTBOOK_API_URL==='undefined'||GUESTBOOK_API_URL.includes('PASTE_GOOGLE_APPS_SCRIPT')){
+    status.textContent='留言表单已准备好，但还没有连接到留言保存表。';
+    return;
+  }
+
+  submitBtn.disabled=true;
+  status.textContent='正在提交留言，请稍候……';
+  try{
+    const response=await fetch(GUESTBOOK_API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({name:nameInput.value.trim(),phone:phoneInput.value.trim(),message:messageInput.value.trim()})});
+    const result=await response.json();
+    if(!result.ok)throw new Error(result.error||'提交失败');
+    status.textContent='留言提交成功，谢谢您的留言！';
+    form.reset();
+    updateCount();
+    updateAccess();
+  }catch(err){
+    status.textContent='留言暂时没有提交成功，请稍后再试。';
+  }finally{
+    submitBtn.disabled=false;
+  }
 });
 
+updateCount();
 updateAccess();
 </script>
 </body>
