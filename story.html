@@ -18,6 +18,11 @@ body { margin:0; background:var(--paper); color:var(--ink); font-family:"Songti 
 h1 { text-align:center; color:var(--red); font-size:clamp(30px,5vw,44px); margin:4px 0 8px; letter-spacing:.08em; }
 .period { text-align:center; color:var(--muted); font-size:15px; margin-bottom:26px; }
 .lead { background:#f8f0e2; border-left:4px solid var(--navy); padding:14px 18px; margin:0 0 28px; color:var(--navy); text-align:center; font-size:24px; font-weight:600; letter-spacing:.12em; }
+.chapter-structure { margin:0 0 30px; padding:22px 24px 18px; border:1px solid var(--line); border-radius:8px; background:#fbf7ef; }
+.chapter-structure h2 { margin:0 0 14px; text-align:center; color:var(--navy); font-size:22px; font-weight:600; }
+.chapter-list { margin:0; padding:0; list-style:none; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 18px; }
+.chapter-list li { color:var(--navy); padding:7px 10px; border-bottom:1px solid var(--line); font-size:17px; }
+.chapter-list .num { display:inline-block; min-width:28px; color:var(--red); font-weight:600; }
 .memoir-text { white-space:pre-wrap; word-break:break-word; font-size:18px; line-height:2; }
 .bottom-nav { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-top:54px; padding-top:28px; border-top:1px solid var(--line); }
 .bottom-nav a { display:inline-block; min-width:130px; padding:10px 20px; border:1px solid var(--navy); border-radius:7px; color:var(--navy); background:#f8f5ee; text-decoration:none; text-align:center; font-size:16px; }
@@ -27,6 +32,9 @@ footer { text-align:center; color:var(--muted); border-top:1px solid var(--line)
   body { padding:8px; }
   .container { padding:22px 17px; }
   .lead { font-size:21px; letter-spacing:.08em; }
+  .chapter-structure { padding:18px 15px 14px; }
+  .chapter-list { grid-template-columns:1fr; gap:6px; }
+  .chapter-list li { font-size:16px; }
   .memoir-text { font-size:17px; line-height:1.95; }
   .bottom-nav a { min-width:120px; }
 }
@@ -38,6 +46,24 @@ footer { text-align:center; color:var(--muted); border-top:1px solid var(--line)
   <h1>钟国华自传</h1>
   <div class="period">1940 — 2026 · 我的回忆录</div>
   <div class="lead">岁月留痕 · 家族记忆 · 薪火相传</div>
+
+  <!-- 第一步：先恢复原来的11部分结构和11个标题。自传正文原文不在这里修改。 -->
+  <section class="chapter-structure" aria-label="自传十一部分结构">
+    <h2>自传目录</h2>
+    <ol class="chapter-list">
+      <li><span class="num">1.</span>童年时代</li>
+      <li><span class="num">2.</span>少年时代</li>
+      <li><span class="num">3.</span>中学时代</li>
+      <li><span class="num">4.</span>青春时代</li>
+      <li><span class="num">5.</span>乡村教书</li>
+      <li><span class="num">6.</span>文化大革命</li>
+      <li><span class="num">7.</span>县城执教</li>
+      <li><span class="num">8.</span>科技探索和计算机</li>
+      <li><span class="num">9.</span>办公司</li>
+      <li><span class="num">10.</span>退休生活</li>
+      <li><span class="num">11.</span>晚年生活</li>
+    </ol>
+  </section>
 
   <div id="memoir" class="memoir-text">正在载入自传……</div>
 
@@ -51,7 +77,7 @@ footer { text-align:center; color:var(--muted); border-top:1px solid var(--line)
 fetch('自传 8:18.txt?v=20260818', { cache:'no-store' })
   .then(r => { if (!r.ok) throw new Error('text'); return r.text(); })
   .then(text => {
-    // 直接按原文本显示：不加标题、不删字、不改字、不重新分段。
+    // 第二步之前，正文只负责原样显示：不加字、不删字、不改字。
     document.getElementById('memoir').textContent = text.replace(/^\uFEFF/, '');
   })
   .catch(() => {
