@@ -18,12 +18,15 @@ body { margin:0; background:var(--paper); color:var(--ink); font-family:"Songti 
 h1 { text-align:center; color:var(--red); font-size:clamp(30px,5vw,44px); margin:4px 0 8px; letter-spacing:.08em; }
 .period { text-align:center; color:var(--muted); font-size:15px; margin-bottom:26px; }
 .lead { background:#f8f0e2; border-left:4px solid var(--navy); padding:14px 18px; margin:0 0 28px; color:var(--navy); text-align:center; font-size:24px; font-weight:600; letter-spacing:.12em; }
-.chapter-structure { margin:0 0 30px; padding:22px 24px 18px; border:1px solid var(--line); border-radius:8px; background:#fbf7ef; }
-.chapter-structure h2 { margin:0 0 14px; text-align:center; color:var(--navy); font-size:22px; font-weight:600; }
-.chapter-list { margin:0; padding:0; list-style:none; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 18px; }
-.chapter-list li { color:var(--navy); padding:7px 10px; border-bottom:1px solid var(--line); font-size:17px; }
-.chapter-list .num { display:inline-block; min-width:28px; color:var(--red); font-weight:600; }
-.memoir-text { white-space:pre-wrap; word-break:break-word; font-size:18px; line-height:2; }
+.toc { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 18px; margin:0 0 40px; padding:22px 24px 18px; background:#fbf7ef; border:1px solid var(--line); border-radius:8px; }
+.toc a { color:var(--navy); text-decoration:none; padding:9px 10px; border-bottom:1px solid var(--line); font-size:17px; transition:.15s; }
+.toc a:hover { color:var(--red); background:#f8f0e2; }
+.toc .num { display:inline-block; min-width:30px; color:var(--red); font-weight:600; }
+section { scroll-margin-top:20px; margin-top:46px; }
+h2 { color:var(--navy); border-left:5px solid var(--red); padding:8px 0 8px 15px; margin:0 0 20px; font-size:clamp(24px,4vw,31px); line-height:1.4; }
+h2 span { font-family:Arial,sans-serif; font-size:.55em; color:#a58a70; margin-right:12px; vertical-align:middle; }
+h3 { color:var(--red); font-size:20px; margin:28px 0 10px; }
+p { text-indent:2em; margin:0 0 1.05em; font-size:18px; }
 .bottom-nav { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-top:54px; padding-top:28px; border-top:1px solid var(--line); }
 .bottom-nav a { display:inline-block; min-width:130px; padding:10px 20px; border:1px solid var(--navy); border-radius:7px; color:var(--navy); background:#f8f5ee; text-decoration:none; text-align:center; font-size:16px; }
 .bottom-nav a:hover { background:var(--navy); color:#fff; }
@@ -31,11 +34,9 @@ footer { text-align:center; color:var(--muted); border-top:1px solid var(--line)
 @media(max-width:600px) {
   body { padding:8px; }
   .container { padding:22px 17px; }
+  .toc { grid-template-columns:1fr; }
   .lead { font-size:21px; letter-spacing:.08em; }
-  .chapter-structure { padding:18px 15px 14px; }
-  .chapter-list { grid-template-columns:1fr; gap:6px; }
-  .chapter-list li { font-size:16px; }
-  .memoir-text { font-size:17px; line-height:1.95; }
+  p { font-size:17px; line-height:1.95; }
   .bottom-nav a { min-width:120px; }
 }
 </style>
@@ -47,41 +48,109 @@ footer { text-align:center; color:var(--muted); border-top:1px solid var(--line)
   <div class="period">1940 — 2026 · 我的回忆录</div>
   <div class="lead">岁月留痕 · 家族记忆 · 薪火相传</div>
 
-  <!-- 第一步：先恢复原来的11部分结构和11个标题。自传正文原文不在这里修改。 -->
-  <section class="chapter-structure" aria-label="自传十一部分结构">
-    <h2>自传目录</h2>
-    <ol class="chapter-list">
-      <li><span class="num">1.</span>童年时代</li>
-      <li><span class="num">2.</span>少年时代</li>
-      <li><span class="num">3.</span>中学时代</li>
-      <li><span class="num">4.</span>青春时代</li>
-      <li><span class="num">5.</span>乡村教书</li>
-      <li><span class="num">6.</span>文化大革命</li>
-      <li><span class="num">7.</span>县城执教</li>
-      <li><span class="num">8.</span>科技探索和计算机</li>
-      <li><span class="num">9.</span>办公司</li>
-      <li><span class="num">10.</span>退休生活</li>
-      <li><span class="num">11.</span>晚年生活</li>
-    </ol>
-  </section>
+  <nav class="toc" id="toc" aria-label="自传十一部分目录">
+    <a href="#ch1"><span class="num">1.</span>童年时代</a>
+    <a href="#ch2"><span class="num">2.</span>少年时代</a>
+    <a href="#ch3"><span class="num">3.</span>中学时代</a>
+    <a href="#ch4"><span class="num">4.</span>青春时代</a>
+    <a href="#ch5"><span class="num">5.</span>乡村教书</a>
+    <a href="#ch6"><span class="num">6.</span>文化大革命</a>
+    <a href="#ch7"><span class="num">7.</span>县城执教</a>
+    <a href="#ch8"><span class="num">8.</span>科技探索和计算机</a>
+    <a href="#ch9"><span class="num">9.</span>办公司</a>
+    <a href="#ch10"><span class="num">10.</span>退休生活</a>
+    <a href="#ch11"><span class="num">11.</span>晚年生活</a>
+  </nav>
 
-  <div id="memoir" class="memoir-text">正在载入自传……</div>
+  <div id="memoir"><p>正在载入自传……</p></div>
 
   <nav class="bottom-nav" aria-label="自传末尾导航">
+    <a href="#toc">↑ 返回目录</a>
     <a href="index.html">⌂ 返回主页</a>
     <a href="guestbook.html">✎ 观后留言</a>
   </nav>
   <footer>愿往事不被遗忘 · 愿亲情代代相传</footer>
 </main>
 <script>
-fetch('自传 8:18.txt?v=20260818', { cache:'no-store' })
+/*
+ * 11个目录按钮对应11个正文锚点。
+ * 重要：这里不修改8.18版自传原文；只在原文对应的起始句之前显示章节标题，
+ * 并保留该起始句本身，因此不会丢失原文字句。
+ */
+const chapters = [
+  ['童年时代','我是1940年3月11日'],
+  ['少年时代','后来父亲由江津师范调到璧山师范去教书'],
+  ['中学时代','1956年夏，考高中'],
+  ['青春时代','1959年一1961年'],
+  ['乡村教书','两年读书很快混过去了！'],
+  ['文化大革命','1966年遇上文化大革命'],
+  ['县城执教','我去宣传部报到时'],
+  ['科技探索和计算机','在邻水中学教书期间'],
+  ['办公司','那时政府鼓励下海办厂经商'],
+  ['退休生活','2000年我正式退休'],
+  ['晚年生活','我的理财历程']
+];
+
+const subheads = new Set([
+  '1. 同窗挚友与五四运动',
+  '2. 结伴赴法勤工俭学',
+  '3. 革命牺牲与深切缅怀',
+  '二、我父亲钟泽普这次农民起义中的具体工作：'
+]);
+
+const esc = s => s.replace(/[&<>"']/g, c => ({
+  '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
+}[c]));
+
+fetch('自传 8:18.txt?v=20260819', { cache:'no-store' })
   .then(r => { if (!r.ok) throw new Error('text'); return r.text(); })
   .then(text => {
-    // 第二步之前，正文只负责原样显示：不加字、不删字、不改字。
-    document.getElementById('memoir').textContent = text.replace(/^\uFEFF/, '');
+    const lines = text
+      .replace(/^\uFEFF/, '')
+      .split(/\r?\n/)
+      .map(s => s.trim())
+      .filter(Boolean)
+      .filter(s => s !== '我的回忆录（8.18版）');
+
+    let html = '';
+    let current = -1;
+    const found = new Array(chapters.length).fill(false);
+
+    lines.forEach(line => {
+      const idx = chapters.findIndex(c => !found[chapters.indexOf(c)] && line.startsWith(c[1]));
+
+      if (idx >= 0) {
+        if (current >= 0) html += '</section>';
+        current = idx;
+        found[idx] = true;
+        html += '<section id="ch' + (idx + 1) + '">';
+        html += '<h2><span>' + String(idx + 1).padStart(2, '0') + '</span>' + esc(chapters[idx][0]) + '</h2>';
+        // 起始句照原文显示，绝不丢弃。
+        html += '<p>' + esc(line) + '</p>';
+        return;
+      }
+
+      if (line.startsWith('一个家庭要过得幸福')) {
+        html += '<h3>一个家庭要过得幸福</h3>';
+        html += '<p>' + esc(line) + '</p>';
+        return;
+      }
+
+      if (subheads.has(line)) {
+        html += '<h3>' + esc(line) + '</h3>';
+        html += '<p>' + esc(line) + '</p>';
+        return;
+      }
+
+      html += '<p>' + esc(line) + '</p>';
+    });
+
+    if (current >= 0) html += '</section>';
+
+    document.getElementById('memoir').innerHTML = html;
   })
   .catch(() => {
-    document.getElementById('memoir').textContent = '自传文本暂时无法载入，请稍后再打开页面。';
+    document.getElementById('memoir').innerHTML = '<p>自传文本暂时无法载入，请稍后再打开页面。</p>';
   });
 </script>
 </body>
