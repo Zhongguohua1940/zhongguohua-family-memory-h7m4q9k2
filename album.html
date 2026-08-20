@@ -10,9 +10,15 @@ body{background:#f7f7f7;font-family:"PingFang SC","Microsoft YaHei",sans-serif;p
 h1{text-align:center;margin:10px 0 30px;color:#333}
 .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;max-width:1200px;margin:0 auto}
 .gallery-item{background:#fff;padding:10px;border-radius:8px;box-shadow:0 2px 8px #00000015}
-.gallery-item img{width:100%;height:auto;display:block;border-radius:5px}
+.gallery-item img{width:100%;height:auto;display:block;border-radius:5px;cursor:zoom-in;transition:transform .15s ease}
+.gallery-item img:hover{transform:scale(1.015)}
 .back{display:block;text-align:center;margin:32px 0 10px;font-size:18px}
 .back a{color:#2563eb;text-decoration:none}
+.photo-lightbox{display:none;position:fixed;z-index:9999;inset:0;background:rgba(0,0,0,.88);align-items:center;justify-content:center;padding:30px;cursor:zoom-out}
+.photo-lightbox.show{display:flex}
+.photo-lightbox img{max-width:95vw;max-height:90vh;width:auto;height:auto;object-fit:contain;border-radius:4px;box-shadow:0 8px 35px rgba(0,0,0,.5);cursor:default}
+.photo-close{position:fixed;right:22px;top:12px;color:#fff;font-size:42px;line-height:1;font-weight:300;cursor:pointer;user-select:none}
+@media(max-width:600px){.photo-lightbox{padding:15px}.photo-lightbox img{max-width:96vw;max-height:86vh}.photo-close{right:14px;top:8px;font-size:36px}}
 </style>
 </head>
 <body>
@@ -38,5 +44,32 @@ h1{text-align:center;margin:10px 0 30px;color:#333}
 <div class="gallery-item"><img src="images/pic - 20.jpeg" alt="家庭相片18"></div>
 </div>
 <div class="back"><a href="./index.html">← 返回首页</a></div>
+<div class="photo-lightbox" id="photoLightbox" aria-hidden="true">
+<span class="photo-close" id="photoClose" aria-label="关闭">×</span>
+<img id="lightboxImage" src="" alt="放大查看">
+</div>
+<script>
+const lightbox=document.getElementById('photoLightbox');
+const lightboxImage=document.getElementById('lightboxImage');
+const closeButton=document.getElementById('photoClose');
+document.querySelectorAll('.gallery-item img').forEach(function(img){
+  img.addEventListener('click',function(){
+    lightboxImage.src=img.src;
+    lightboxImage.alt=img.alt;
+    lightbox.classList.add('show');
+    lightbox.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+  });
+});
+function closeLightbox(){
+  lightbox.classList.remove('show');
+  lightbox.setAttribute('aria-hidden','true');
+  lightboxImage.src='';
+  document.body.style.overflow='';
+}
+closeButton.addEventListener('click',closeLightbox);
+lightbox.addEventListener('click',function(e){if(e.target===lightbox)closeLightbox();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&lightbox.classList.contains('show'))closeLightbox();});
+</script>
 </body>
 </html>
