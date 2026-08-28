@@ -27,6 +27,9 @@ h2 { color:var(--navy); border-left:5px solid var(--red); padding:8px 0 8px 15px
 h2 span { font-family:Arial,sans-serif; font-size:.55em; color:#a58a70; margin-right:12px; vertical-align:middle; }
 h3 { color:var(--red); font-size:20px; margin:28px 0 10px; }
 p { text-indent:2em; margin:0 0 1.05em; font-size:18px; }
+figure.photo { margin:30px auto; text-align:center; }
+figure.photo img { max-width:min(620px,100%); height:auto; border:1px solid var(--line); border-radius:6px; padding:8px; background:#fff; box-shadow:0 3px 12px rgba(0,0,0,.07); }
+figure.photo figcaption { font-size:15px; color:var(--muted); margin-top:10px; line-height:1.8; text-indent:0; }
 .bottom-nav { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-top:54px; padding-top:28px; border-top:1px solid var(--line); }
 .bottom-nav a { display:inline-block; min-width:130px; padding:10px 20px; border:1px solid var(--navy); border-radius:7px; color:var(--navy); background:#f8f5ee; text-decoration:none; text-align:center; font-size:16px; }
 .bottom-nav a:hover { background:var(--navy); color:#fff; }
@@ -38,6 +41,7 @@ footer { text-align:center; color:var(--muted); border-top:1px solid var(--line)
   .lead { font-size:21px; letter-spacing:.08em; }
   p { font-size:17px; line-height:1.95; }
   .bottom-nav a { min-width:120px; }
+  figure.photo { margin:22px auto; }
 }
 </style>
 </head>
@@ -76,6 +80,11 @@ footer { text-align:center; color:var(--muted); border-top:1px solid var(--line)
  * 11个目录按钮对应11个正文锚点。
  * 重要：这里不修改8.18版自传原文；只在原文对应的起始句之前显示章节标题，
  * 并保留该起始句本身，因此不会丢失原文字句。
+ *
+ * 【2026-08-28 更新】按照桌面版《自传 8:20.pages》的排版，在自传原文的
+ * 相应位置插入照片（位置、内容、数量与电脑里的版本一致，视频暂未加入）。
+ * 其中 4 张照片（计算机小组合影、青年照片、邮轮合影、手机截图）为本仓库
+ * 新增文件，存放在仓库根目录；其余照片引用本仓库已有的图片文件。
  */
 const chapters = [
   ['童年时代','我是1940年3月11日'],
@@ -98,11 +107,41 @@ const subheads = new Set([
   '二、我父亲钟泽普这次农民起义中的具体工作：'
 ]);
 
+/* ===== 照片插入配置（与电脑版自传的位置一一对应） ===== */
+/* 自传最前面的照片（对应标题页） */
+const photoTop = [
+  'images/pic - 12.jpeg'
+];
+/* 插在某段文字之前的照片（该段开头文字 → 图片） */
+const photoBefore = {
+  '我在学校还组建了计算机小组': '自传-计算机小组.jpg',
+  '买了一台老年电动四轮车': 'images/pic - 1.jpeg'
+};
+/* 插在某段文字之后的照片（该段开头文字 → 图片） */
+const photoAfter = {
+  '我是1940年3月11日': 'images/pic - 20.jpeg',
+  '父亲在昆明建的银行': 'images/pic - 8.jpeg',
+  '1958年大跃进': '自传-青年照片.jpg',
+  '整个文化大革命期间': 'images/pic - 16.jpeg',
+  '我父亲于1997年8月1日': 'images/pic - 19.jpeg',
+  '2021年，因为岛上': '自传-邮轮合影.jpg',
+  '但是没过多久': '自传-手机截图.jpg'
+};
+/* 自传末尾的照片及文字说明（对应电脑版文末） */
+const photoEnd = [
+  ['新相片.jpeg', '左边第一排从左到右是亲家，唐伦，我，第二排从左到右彭宇浩，钟慧，彭飞，钟一鸣，杨梅，中间的小孩钟与杨'],
+  ['images/pic - 2.jpeg', '这是在日本广岛的广场上拍的照片，相片当中那个塑像，手指天空，表示纪念广岛被原子弹轰炸，让人们永远记住。']
+];
+
 const esc = s => s.replace(/[&<>"']/g, c => ({
   '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
 }[c]));
 
-fetch('自传 8:18.txt?v=20260819', { cache:'no-store' })
+const fig = (src, cap) =>
+  '<figure class="photo"><img src="' + src + '" alt="' + esc(cap || '自传照片') +
+  '" loading="lazy">' + (cap ? '<figcaption>' + esc(cap) + '</figcaption>' : '') + '</figure>';
+
+fetch('自传 8:18.txt?v=20260829', { cache:'no-store' })
   .then(r => { if (!r.ok) throw new Error('text'); return r.text(); })
   .then(text => {
     const lines = text
@@ -112,11 +151,19 @@ fetch('自传 8:18.txt?v=20260819', { cache:'no-store' })
       .filter(Boolean)
       .filter(s => s !== '我的回忆录（8.18版）');
 
-    let html = '';
+    let html = photoTop.map(s => fig(s)).join('');
+
+    const addPhotos = (map, line) => {
+      Object.keys(map).forEach(k => { if (line.startsWith(k)) html += fig(map[k]); });
+    };
+
     let current = -1;
     const found = new Array(chapters.length).fill(false);
 
     lines.forEach(line => {
+      /* 段落之前的照片 */
+      addPhotos(photoBefore, line);
+
       const idx = chapters.findIndex(c => !found[chapters.indexOf(c)] && line.startsWith(c[1]));
 
       if (idx >= 0) {
@@ -127,25 +174,32 @@ fetch('自传 8:18.txt?v=20260819', { cache:'no-store' })
         html += '<h2><span>' + String(idx + 1).padStart(2, '0') + '</span>' + esc(chapters[idx][0]) + '</h2>';
         // 起始句照原文显示，绝不丢弃。
         html += '<p>' + esc(line) + '</p>';
+        addPhotos(photoAfter, line);
         return;
       }
 
       if (line.startsWith('一个家庭要过得幸福')) {
         html += '<h3>一个家庭要过得幸福</h3>';
         html += '<p>' + esc(line) + '</p>';
+        addPhotos(photoAfter, line);
         return;
       }
 
       if (subheads.has(line)) {
         html += '<h3>' + esc(line) + '</h3>';
         html += '<p>' + esc(line) + '</p>';
+        addPhotos(photoAfter, line);
         return;
       }
 
       html += '<p>' + esc(line) + '</p>';
+      addPhotos(photoAfter, line);
     });
 
     if (current >= 0) html += '</section>';
+
+    /* 文末照片及说明 */
+    photoEnd.forEach(([src, cap]) => { html += fig(src, cap); });
 
     document.getElementById('memoir').innerHTML = html;
   })
